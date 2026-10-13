@@ -1,0 +1,165 @@
+/* Noodpagina San Tiago: huisstijl van santiagotiel.nl (goud op donker, Forum + DM Sans) */
+@font-face { font-family: "Forum"; src: url("forum-latin-400-normal.woff2") format("woff2"); font-weight: 400; font-display: swap; }
+@font-face { font-family: "DM Sans"; src: url("dm-sans-latin-400-normal.woff2") format("woff2"); font-weight: 400; font-display: swap; }
+@font-face { font-family: "DM Sans"; src: url("dm-sans-latin-700-normal.woff2") format("woff2"); font-weight: 700; font-display: swap; }
+
+:root {
+  --donker: #0E0D0C;
+  --donkerder: #111111;
+  --kaart: #171513;
+  --goud: #E4C590;
+  --goud-zacht: #DDBD8B;
+  --tekst: #F3EEE6;
+  --tekst-zacht: #B9B2A7;
+  --lijn: rgba(228, 197, 144, .28);
+}
+
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0;
+  background: var(--donker);
+  color: var(--tekst);
+  font: 400 16px/1.65 "DM Sans", system-ui, sans-serif;
+  padding-bottom: 76px; /* ruimte voor de actiebalk op de telefoon */
+}
+a { color: var(--goud); }
+a:focus-visible, .knop:focus-visible { outline: 2px solid var(--goud); outline-offset: 3px; }
+h1, h2 { font-family: "Forum", Georgia, serif; font-weight: 400; margin: 0; letter-spacing: -.5px; }
+
+.eyebrow {
+  margin: 0 0 10px;
+  color: var(--goud);
+  font-size: 12px;
+  letter-spacing: .32em;
+  text-transform: uppercase;
+}
+
+/* Kop met sfeerfoto */
+.hero {
+  position: relative;
+  min-height: 100svh;
+  display: grid;
+  place-items: center;
+  padding: 40px 16px 56px;
+  text-align: center;
+  background:
+    linear-gradient(rgba(10, 9, 8, .78), rgba(10, 9, 8, .86)),
+    url("sfeer.webp") center / cover no-repeat;
+}
+.hero__inhoud { width: 100%; max-width: 760px; }
+.logo { width: min(360px, 78vw); height: auto; display: block; margin: 0 auto 22px; }
+.hero h1 { font-size: clamp(44px, 9vw, 84px); line-height: 1.02; color: #fff; }
+
+.status {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin: 22px 0 0;
+  padding: 8px 18px;
+  border: 1px solid var(--lijn);
+  border-radius: 999px;
+  background: rgba(14, 13, 12, .6);
+  font-size: 15px;
+}
+.status::before { content: ""; width: 9px; height: 9px; border-radius: 50%; background: #7BC67E; box-shadow: 0 0 0 4px rgba(123, 198, 126, .2); }
+.status.is-dicht::before { background: var(--tekst-zacht); box-shadow: none; }
+
+.melding {
+  margin: 26px auto 0;
+  max-width: 600px;
+  font-size: 17px;
+  color: var(--tekst);
+}
+.melding p { margin: 0 0 6px; }
+.melding strong { color: var(--goud); font-weight: 700; }
+
+/* Actieknoppen */
+.knoppen {
+  display: grid;
+  gap: 12px;
+  margin-top: 32px;
+  grid-template-columns: 1fr;
+}
+@media (min-width: 720px) {
+  .knoppen { grid-template-columns: 1.3fr 1fr 1fr; }
+}
+.knop {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  min-height: 68px;
+  padding: 12px 22px;
+  border-radius: 999px;
+  text-decoration: none;
+  text-align: left;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 1.2;
+  transition: transform .15s ease, background-color .15s ease;
+}
+.knop:hover { transform: translateY(-2px); }
+.knop svg { width: 26px; height: 26px; flex: none; fill: currentColor; }
+.knop small { display: block; font-weight: 400; font-size: 12px; letter-spacing: .08em; text-transform: uppercase; opacity: .8; margin-bottom: 2px; }
+.knop--goud { background: var(--goud); color: #1A1410; }
+.knop--goud:hover { background: #EDD3A4; }
+.knop--rand { border: 1.5px solid var(--goud); color: var(--goud); background: rgba(14, 13, 12, .55); }
+.knop--rand:hover { background: rgba(228, 197, 144, .12); }
+
+/* Informatie */
+.info { max-width: 980px; margin: 0 auto; padding: 56px 16px 24px; }
+.ornament { display: block; width: 180px; height: auto; margin: 0 auto 36px; }
+.kaarten { display: grid; gap: 20px; }
+@media (min-width: 760px) { .kaarten { grid-template-columns: 1fr 1fr; } }
+.kaart {
+  background: var(--kaart);
+  border: 1px solid var(--lijn);
+  border-radius: 18px;
+  padding: 30px 26px;
+}
+.kaart h2 { font-size: clamp(30px, 5vw, 40px); margin-bottom: 18px; color: #fff; }
+
+.tijden { width: 100%; border-collapse: collapse; font-size: 16px; }
+.tijden th, .tijden td { padding: 10px 12px; border-bottom: 1px solid rgba(255, 255, 255, .07); }
+.tijden th { text-align: left; font-weight: 400; color: var(--tekst-zacht); }
+.tijden td { text-align: right; font-variant-numeric: tabular-nums; }
+.tijden tr.is-vandaag th, .tijden tr.is-vandaag td { color: var(--goud); font-weight: 700; }
+.tijden tr.is-vandaag { background: rgba(228, 197, 144, .08); }
+.tijden tr.is-vandaag th::after { content: " (vandaag)"; font-weight: 400; font-size: 13px; }
+
+address { font-style: normal; font-size: 19px; line-height: 1.5; margin-bottom: 14px; }
+.klein { font-size: 15px; color: var(--tekst-zacht); margin: 0 0 12px; }
+.klein strong { color: var(--tekst); }
+.contactregel { margin: 18px 0 0; font-size: 17px; line-height: 1.8; }
+.contactregel a { text-decoration: none; }
+.contactregel a:hover { text-decoration: underline; }
+
+.sociaal { text-align: center; margin: 36px 0 0; color: var(--tekst-zacht); }
+
+.voet { background: var(--donkerder); text-align: center; padding: 22px 16px; font-size: 13px; color: var(--tekst-zacht); letter-spacing: .02em; }
+.voet p { margin: 0; }
+
+/* Vaste actiebalk onderaan op de telefoon */
+.balk {
+  position: fixed; left: 0; right: 0; bottom: 0; z-index: 10;
+  display: grid; grid-template-columns: 2fr 1fr; gap: 10px;
+  padding: 10px 16px calc(10px + env(safe-area-inset-bottom));
+  background: rgba(17, 17, 17, .96);
+  border-top: 1px solid var(--lijn);
+}
+.balk__knop {
+  display: flex; align-items: center; justify-content: center;
+  min-height: 50px; border-radius: 999px;
+  border: 1.5px solid var(--goud); color: var(--goud);
+  font-weight: 700; text-decoration: none;
+}
+.balk__knop--goud { background: var(--goud); color: #1A1410; }
+@media (min-width: 720px) {
+  .balk { display: none; }
+  body { padding-bottom: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .knop { transition: none; }
+  .knop:hover { transform: none; }
+}
